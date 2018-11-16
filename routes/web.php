@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/landlord', 'LandlordController')->except(['create', 'edit']);
+Route::resource('/property', 'PropertyController')->except(['create', 'edit']);
