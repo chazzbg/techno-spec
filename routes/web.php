@@ -19,3 +19,5 @@ Route::resource('/landlord', 'LandlordController')->except(['create', 'edit']);
 Route::resource('/property/landlords', 'PropertyLandlordController')->only(['index', 'store','show','update']);
 Route::resource('/property', 'PropertyController')->except(['create', 'edit']);
 Route::resource('/contract', 'ContractsController')->except(['create', 'edit']);
+Route::get('/reports/due', 'ReportsController@dueRentProperties');
+Route::get('/reports/own', 'ReportsController@ownProperties');
