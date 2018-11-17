@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContractPropertyLandlordsTable extends Migration
+class CreatePropertyLandlordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateContractPropertyLandlordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contract_property_landlords', function (Blueprint $table) {
+        Schema::create('property_landlords', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_contract_propery')->nullable(false);
+            $table->integer('id_property')->nullable(false);
             $table->integer('id_landlord')->nullable(false);
 
-            $table->foreign('id_contract_propery')
-                ->references('id')->on('contract_properties')
+            $table->foreign('id_property')
+                ->references('id')->on('properties')
                 ->onDelete('restrict');
             $table->foreign('id_landlord')
                 ->references('id')->on('landlords')
@@ -36,6 +36,6 @@ class CreateContractPropertyLandlordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contract_property_landlords');
+        Schema::dropIfExists('property_landlords');
     }
 }

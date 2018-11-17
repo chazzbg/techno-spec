@@ -19,7 +19,7 @@ class CreateContractsTable extends Migration
             $table->string('type')->nullable(false);
             $table->date('valid_from')->nullable(false);
             $table->date('valid_to')->nullable(false);
-            $table->double('rent', 8,2);
+            $table->double('price', 8,2);
             $table->index('number');
             $table->timestamps();
         });

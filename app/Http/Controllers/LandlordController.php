@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LandlordRequest;
-use App\Http\Resources\GenericCollection;
 use App\Http\Resources\GenericResource;
 use App\Landlord;
-use Illuminate\Http\Request;
 
 class LandlordController extends Controller
 {
@@ -16,7 +14,7 @@ class LandlordController extends Controller
      */
     public function index()
     {
-        return new GenericCollection(Landlord::paginate(10));
+        return GenericResource::collection(Landlord::paginate(10));
     }
 
 

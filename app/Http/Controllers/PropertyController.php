@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\GenericCollection;
 use App\Http\Resources\GenericResource;
 use App\Property;
 use Illuminate\Http\Request;
@@ -15,7 +14,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return new GenericCollection(Property::paginate(10));
+        return GenericResource::collection(Property::paginate(10));
     }
 
 
