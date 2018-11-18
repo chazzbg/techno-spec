@@ -1,5 +1,6 @@
 ##Techo farm
 
+
 requirements
 - php >= 7.1.3
 - sqlite >= 3
@@ -20,4 +21,5 @@ steps to run
 - ``php artisan migrate``
 - ``php artisan serve``
 
-visit (http://127.0.0.1:8000)http://127.0.0.1:8000
+
+visit http://127.0.0.1:8000
