@@ -32,7 +32,7 @@ class RentDueDataprovider implements DataProviderInterface
     public function getData()
     {
 
-        $collection = $this->builder->paginate(15,
+        $collection = $this->builder->get(
             [
                 'contracts.number',
                 'contracts.type',
@@ -50,7 +50,7 @@ class RentDueDataprovider implements DataProviderInterface
         $collection->each(function ($data){
             $data->landlord_ownership = (float)$data->area * ($data->share / 100);
             $data->landlord_due_rent = (float)$data->price * ($data->share / 100);
-
+            $data->landlord = $data->firstname. ' '. $data->lastname;
         });
         return $collection;
 

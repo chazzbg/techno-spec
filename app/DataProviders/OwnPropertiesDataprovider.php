@@ -26,7 +26,7 @@ class OwnPropertiesDataprovider implements DataProviderInterface
     public function getData()
     {
 
-        $collection = $this->builder->paginate(15,
+        $collection = $this->builder->get(
             [
                 'contracts.number',
                 'contracts.price',
@@ -38,7 +38,7 @@ class OwnPropertiesDataprovider implements DataProviderInterface
         );
 
         $collection->each(function ($data){
-            $data->price_per_ar = (float)$data->price / (float)$data->area;
+            $data->price_per_ar = number_format((float)$data->price / (float)$data->area,2);
         });
         return $collection;
 

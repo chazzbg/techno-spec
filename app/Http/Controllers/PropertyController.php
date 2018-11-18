@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PropertyRequest;
 use App\Http\Resources\GenericResource;
+use App\Http\Resources\PropertyLandlordResource;
 use App\Property;
-use Illuminate\Http\Request;
+use App\PropertyLandlord;
 
 class PropertyController extends Controller
 {
@@ -14,20 +16,32 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return GenericResource::collection(Property::paginate(10));
+        return GenericResource::collection(Property::all());
     }
 
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param PropertyRequest $request
      *
-     * @return GenericResource
+     * @return PropertyLandlordResource
      */
-    public function store(Request $request)
+    public function store(PropertyRequest $request)
     {
-        return new GenericResource(Property::create($request->all()));
+        $property = Property::create($request->all());
+
+        $landlords = $request->get('landlords');
+        $shares = $request->get('shares');
+        foreach ($landlords as $k => $item) {
+            PropertyLandlord::create([
+                'id_property'=> $property->id,
+                'id_landlord'=> $item,
+                'share' => $shares[$k]
+            ]);
+        }
+
+        return new PropertyLandlordResource($property);
     }
 
     /**
@@ -35,27 +49,11 @@ class PropertyController extends Controller
      *
      * @param  \App\Property $property
      *
-     * @return GenericResource
+     * @return PropertyLandlordResource
      */
     public function show(Property $property)
     {
-        return new GenericResource($property);
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Property $property
-     *
-     * @return GenericResource
-     */
-    public function update(Request $request, Property $property)
-    {
-        $all = $request->all();
-        $property->update($all);
-        return new GenericResource($property);
+        return new PropertyLandlordResource($property);
     }
 
     /**

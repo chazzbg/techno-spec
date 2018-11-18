@@ -23,6 +23,7 @@ trait FilteringTrait
     public function filter(array $filters): void
     {
         foreach ($filters as $filter => $value) {
+            if(empty($value)) {continue;}
             if($filter==='date'){
                 $this->builder->where('contracts.valid_from','<=',$value)
                               ->where('contracts.valid_to','>=',$value);

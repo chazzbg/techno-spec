@@ -144,4 +144,5 @@ return [
 
     'attributes' => [],
 
+    'percentile'=> 'The shares must be exactly 100%',
 ];

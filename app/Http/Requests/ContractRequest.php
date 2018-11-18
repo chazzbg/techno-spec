@@ -20,8 +20,9 @@ class ContractRequest extends FormRequest
             'type'=>'required|in:rent,ownership',
             'valid_from'=> 'required|date',
             'valid_to'=> 'required|date|after:valid_from',
-            'price' => 'required|',
-            'properties' => 'required|array|exists:properties,id'
+            'price' => 'required',
+            'properties' => 'required|array',
+            'properties.*' => 'required|exists:properties,id'
         ];
     }
 }

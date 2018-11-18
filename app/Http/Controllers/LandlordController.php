@@ -14,7 +14,7 @@ class LandlordController extends Controller
      */
     public function index()
     {
-        return GenericResource::collection(Landlord::paginate(10));
+        return GenericResource::collection(Landlord::all());
     }
 
 
